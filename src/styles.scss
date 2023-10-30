@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+body{
+    background-color: rgb(240, 240, 240) !important;
+}
+.pi-search{
+    position: absolute !important;
+    left: 10px !important;
+    top: 10px !important;
+    z-index: 10 !important;
+    color: rgb(147, 150, 150) !important;
+}
+
+.p-menubar{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    p-menubarsub{
+        margin-right: 0px !important;
+        margin-left: auto !important;
+    }  
+} 
+.p-menubar-end{
+    margin: 0px !important;
+}
+@media screen and (max-width: 960px){
+    .p-menubar .p-menubar-button {
+        margin: 0 0 0 auto !important;
+        position: absolute;
+        right:10px;
+    }
+}
+.p-paginator{
+    background-color: transparent !important;
+    margin-top: 30px !important;
+}

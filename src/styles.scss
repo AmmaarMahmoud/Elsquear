@@ -33,4 +33,8 @@ body{
 .p-paginator{
     background-color: transparent !important;
     margin-top: 30px !important;
+     .p-paginator-pages .p-paginator-page.p-highlight{
+        background: #d5e1ef;
+    border-color: #d5e1ef;
+     }
 }

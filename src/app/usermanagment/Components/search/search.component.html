@@ -1,7 +1,7 @@
 <div class="row d-flex flex-column align-items-center">
     <h2 class="text-center mb-4">Lorem ipsum dolor</h2>
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-10 col-xs-12">
-        <p class="text-center">
+        <p class="text-center text-black-50">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto corrupti quidem consectetur nostrum autem provident ullam, neque esse recusandae voluptates cum nihil id, possimus placeat
         </p>
     </div>
@@ -12,7 +12,7 @@
                 <input type="text" class="form-control ps-4" placeholder="search" aria-label="Example text with button addon" aria-describedby="button-addon1" formControlName="name"> 
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon1"[disabled]="Myform.invalid">Search</button>
             </div>
-            <div *ngIf="name?.hasError('required')&& name?.touched">
+            <div *ngIf="name?.hasError('required') && name?.touched">
                 <small>name is required</small>
             </div>
         </form>

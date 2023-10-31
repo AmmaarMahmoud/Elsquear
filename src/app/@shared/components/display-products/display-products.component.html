@@ -2,7 +2,7 @@
     <ng-container *ngFor="let card of displayedCards">
         <div class="col">
 
-            <div class="card" (click)="routId(card.id)">
+            <div class="card" (click)="routId(card?.id)" [class.active]="title===card?.title">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="https://mdbootstrap.com/img/new/standard/nature/111.webp" class="img-fluid" />
                 <a href="#!">
@@ -11,14 +11,13 @@
               </div>
             
               <div class="card-body">
-                <h5 class="card-title">{{card.title}}</h5>
-                <p class="card-text text-black-50">{{card.overview.slice(0,150)}} ... </p>
+                <h5 class="card-title">{{card?.title}}</h5>
+                <p class="card-text text-black-50">{{card?.overview?.slice(0,150)}} ... </p>
             
             
               </div>
             </div>
           </div>
     </ng-container>
-    
   </div>
   <p-paginator [rows]="6" [totalRecords]="Products.length" (onPageChange)="onPageChange($event)"></p-paginator>

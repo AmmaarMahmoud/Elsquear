@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-display-products',
@@ -9,21 +9,21 @@ import { Router } from '@angular/router';
 export class DisplayProductsComponent implements OnInit,OnChanges {
   @Input() Products:any[]=[]
   displayedCards:any[]=[]
-  constructor(private route:Router){}
+  title:any;
+  constructor(private route:Router,
+    private activeroute:ActivatedRoute){}
 
   ngOnChanges(): void {
     this.proccessProduvt()
   }
 
   ngOnInit(): void {
-   console.log(this.Products);
+    this.title = this.activeroute.snapshot.paramMap.get('title')
   }
   onPageChange(event: any): void {
     const firstItem = event.first;
-    console.log(firstItem);
-    
     const itemsPerPage = event.rows;
-    this.displayedCards = this.Products.slice(firstItem, firstItem + itemsPerPage);
+    this.displayedCards = this.Products?.slice(firstItem, firstItem + itemsPerPage);
   }
   
   proccessProduvt(){

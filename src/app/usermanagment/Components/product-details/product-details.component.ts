@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { ProductService } from 'src/app/@core/services/product.service';
 
@@ -11,16 +11,17 @@ import { ProductService } from 'src/app/@core/services/product.service';
 export class ProductDetailsComponent implements OnInit {
   oneProduct:any;
   CurrentId?:number
-  constructor(private protect :ProductService , private activeRoue:ActivatedRoute){
+  constructor(private protect :ProductService , private activeRoue:ActivatedRoute, private route: Router){
     this.activeRoue.paramMap.subscribe((param:any)=>{
       this.CurrentId=Number(param.get('id'))
       console.log(this.CurrentId);
-      
     })
   }
+
   ngOnInit(): void {
     this.getOmeProduct()
   }
+
   getOmeProduct(){
     this.protect.getAllproduct().pipe(
       map((values:any)=>{
@@ -30,5 +31,8 @@ export class ProductDetailsComponent implements OnInit {
       this.oneProduct=data[0]
       console.log(this.oneProduct);
     })
+  }
+  acativeCard(){
+    this.route.navigate(['user/AllProducts',{title:this.oneProduct.title}])
   }
 }

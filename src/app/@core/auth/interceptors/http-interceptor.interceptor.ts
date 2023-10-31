@@ -15,20 +15,14 @@ import { environment } from 'src/environments/environment';
 export class HttpInterceptorInterceptor implements HttpInterceptor {
 
   constructor(
-    private spinner: NgxSpinnerService,
      private identityService: AuthService
      ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    let handled: boolean = false;
-    this.spinner.show();
+    // let handled: boolean = false;
 
-    setTimeout(() => {
-      /** spinner ends after 2 seconds */
-      this.spinner.hide();
-    }, 2000);
-
+   
     
 
     const isApiUrl = request.url.startsWith(environment.baseUrl);
@@ -38,48 +32,8 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
         setHeaders: { Authorization: `Bearer ${token}` }
     });
     }
-    
     return next.handle(request)
-    .pipe(
-      retry(1),
-      catchError((returnedError) => {
-        let errorMessage = null;
 
-        if (returnedError.error instanceof ErrorEvent) {
-          errorMessage = `هناك خطأ: ${returnedError.error.Message} `;
-        } else if (returnedError instanceof HttpErrorResponse) {
-          errorMessage = `هناك خطأ: ${returnedError.error.Message}`;
-          handled = this.handleServerSideError(returnedError);
-        } 
-
- 
-        if (!handled) {
-          if (errorMessage) {
-            return throwError(errorMessage);
-          } else {
-            return throwError("Unexpected problem occurred");
-          }
-        } else {
-          return of(returnedError);
-        }
-      })
-    )
   }
 
-  private handleServerSideError(error: HttpErrorResponse): boolean {
-    let handled: boolean = false;
-
-    switch (error.status) {
-      case 401:
-        localStorage.removeItem('token')
-        handled = true;
-        break;
-      case 403:
-        localStorage.removeItem('token')
-        handled = true;
-        break;
-    }
-
-    return handled;
-  }
 }

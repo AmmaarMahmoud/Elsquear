@@ -4,7 +4,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     HeaderComponent
@@ -13,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     MenubarModule,
     InputTextareaModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   exports:[
     HeaderComponent

@@ -9,7 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorInterceptor } from './@core/auth/interceptors/http-interceptor.interceptor';
 import { ApiService } from 'src/app/@core/api.service';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoadedInterceptor } from './@core/auth/interceptors/loaded.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,11 +20,18 @@ import { ApiService } from 'src/app/@core/api.service';
     BrowserAnimationsModule,
     AccountModule,
     CoreModule,
+    NgxSpinnerModule.forRoot({
+      type:"square-jelly-box",
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptorInterceptor,
     multi: true
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass:LoadedInterceptor,
+    multi:true
   }, ApiService,],
   bootstrap: [AppComponent]
 })

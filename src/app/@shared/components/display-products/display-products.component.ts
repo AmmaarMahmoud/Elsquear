@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Prod } from 'src/app/@models/prod';
 
 @Component({
   selector: 'app-display-products',
@@ -7,8 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./display-products.component.scss']
 })
 export class DisplayProductsComponent implements OnInit,OnChanges {
-  @Input() Products:any[]=[]
-  displayedCards:any[]=[]
+  @Input() Products:Prod[]=[]
+  displayedCards:Prod[]=[]
   title:any;
   constructor(private route:Router,
     private activeroute:ActivatedRoute){}
